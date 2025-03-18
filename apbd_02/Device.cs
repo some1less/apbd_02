@@ -1,16 +1,17 @@
 ﻿namespace apbd_02;
 
-public class Device
+public abstract class Device
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public bool isTurnedOn { get; set; }
+    public bool IsTurnedOn { get; set; }
 
-    
-    public void Launch()
+    protected Device(int id, string name, bool isTurnedOn)
     {
-        Console.WriteLine(Id + " " + Name + " " + isTurnedOn);
+        Id = id;
+        Name = name;
+        IsTurnedOn = isTurnedOn;
     }
-    
-    
+
+    public abstract void Activate();
 }
