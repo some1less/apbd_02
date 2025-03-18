@@ -1,6 +1,6 @@
 ﻿namespace apbd_02;
 
-public interface IPN
+public interface IPowerNotifier
 {
     void notify(){}
 }
