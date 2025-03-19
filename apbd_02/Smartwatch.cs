@@ -14,9 +14,7 @@ public class Smartwatch : Device, IPowerNotifier
         else
         {
             _batteryLevel = batteryLevel;
-
         }
-        
     }
     
     public void notify()
@@ -39,17 +37,17 @@ public class Smartwatch : Device, IPowerNotifier
             return;
 
         }
-        
-        Console.WriteLine($"Smartwatch activated. Registered info about Smartwatch:" +
-                          "ID: {id}; Name: {name}; Status: {isTurnedOn}; Battery Level: {batteryLevel}%");
 
-        if (_batteryLevel <= 20)
+        if (_batteryLevel > 0)
         {
-            notify();
+            Console.WriteLine($"Smartwatch activated. Registered info about Smartwatch: \n" +
+                $"ID: {Id}; Name: {Name}; TurnedOn: {IsTurnedOn}; Battery Level: {_batteryLevel}%");
+            
+            if (_batteryLevel <= 20)
+            {
+                notify();
+            }
         }
-        
-        
-        
     }
     
 }
