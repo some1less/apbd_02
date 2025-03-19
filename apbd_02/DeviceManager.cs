@@ -76,7 +76,7 @@ public class DeviceManager
             if (idPart.StartsWith("SW"))
             {
                 if (parts.Length != 4) return null;
-                int batteryLevel = int.Parse(additionalData);
+                int batteryLevel = int.Parse(additionalData.TrimEnd('%'));
                 return new Smartwatch(deviceId, namepart, isTurnedOn, batteryLevel);
             }
             else if (idPart.StartsWith("P"))
@@ -88,9 +88,9 @@ public class DeviceManager
             else if (idPart.StartsWith("ED"))
             {
                 if (parts.Length != 5) return null;
-                string ipAdress = additionalData;
+                string ipAddress = additionalData;
                 string networkName = parts[4];
-                return new EmbeddedDevice(deviceId, namepart, isTurnedOn, ipAdress, networkName);
+                return new EmbeddedDevice(deviceId, namepart, isTurnedOn, ipAddress, networkName);
             }
             else
             {
@@ -208,6 +208,28 @@ public class DeviceManager
         catch (Exception e)
         {
             Console.WriteLine($"Error turning off device: {e}");
+        }
+    }
+
+    public void ShowAllDevices()
+    {
+        try
+        {
+            if (devices.Count == 0)
+            {
+                Console.WriteLine("No devices found");
+            }
+            else
+            {
+                foreach (var device in devices)
+                {
+                    device.Info();
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error showing devices: {e}");
         }
     }
 }
