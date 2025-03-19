@@ -2,5 +2,5 @@
 
 public interface IPowerNotifier
 {
-    void notify(){}
+    void Notify(){}
 }

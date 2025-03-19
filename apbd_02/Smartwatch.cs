@@ -6,19 +6,17 @@ public class Smartwatch : Device, IPowerNotifier
 {
     private int _batteryLevel;
 
-    public Smartwatch(){}
     public Smartwatch(int id, string name, bool isTurnedOn, int batteryLevel) : base(id, name, isTurnedOn)
     {
         
         BatteryLevel = batteryLevel;
-        
-        if (_batteryLevel <= 20)
-        {
-            notify();
-        }
-        
         Console.WriteLine("[Object] Smartwatch Created");
 
+        if (_batteryLevel <= 20)
+        {
+            Notify();
+        }
+        
     }
 
     public int BatteryLevel
@@ -37,26 +35,21 @@ public class Smartwatch : Device, IPowerNotifier
         }
     }
     
-    public void notify()
+    public void Notify()
     {
         Console.WriteLine($"[Smartwatch] Low Battery Level!: {_batteryLevel}%");
     }
     
-    public override void SwitchMode()
+    public override void TurnMode()
     {
 
         if (IsTurnedOn)
         {
             IsTurnedOn = false;
             Console.WriteLine("[Smartwatch] Turned Off");
-
-           
-            
         }
         else
         {
-            
-            
             if (_batteryLevel < 11)
             {
                 throw new EmptyBatteryException();
@@ -64,13 +57,22 @@ public class Smartwatch : Device, IPowerNotifier
             else
             {
                 IsTurnedOn = true;
-                _batteryLevel -= 10;
+                BatteryLevel -= 10;
                 Console.WriteLine("[Smartwatch] Turned On");
-                Console.WriteLine($"Registered info about Smartwatch: \n" +
-                                  $"ID: {Id}; Name: {Name}; TurnedOn: {IsTurnedOn}; Battery Level: {_batteryLevel}%");
+
+                if (_batteryLevel <= 20)
+                {
+                    Notify();
+                }
             }
             
         }
+    }
+
+    public override void Info()
+    {
+        Console.WriteLine($"Registered info about Smartwatch: \n" +
+                          $"ID: {Id}; Name: {Name}; TurnedOn: {IsTurnedOn}; Current Battery Level: {_batteryLevel}%");
     }
     
 }
