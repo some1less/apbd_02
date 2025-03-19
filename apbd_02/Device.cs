@@ -6,7 +6,6 @@ public abstract class Device
     public string Name { get; set; }
     public bool IsTurnedOn { get; set; }
 
-    protected Device(){}
     protected Device(int id, string name, bool isTurnedOn)
     {
         Id = id;
@@ -14,5 +13,7 @@ public abstract class Device
         IsTurnedOn = isTurnedOn;
     }
 
-    public abstract void SwitchMode();
+    public abstract void TurnMode();
+    
+    public abstract void Info();
 }
