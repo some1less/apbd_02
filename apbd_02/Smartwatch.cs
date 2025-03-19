@@ -9,16 +9,12 @@ public class Smartwatch : Device, IPowerNotifier
     {
         if (batteryLevel < 0 || batteryLevel > 100)
         {
-            Console.WriteLine("batteryLevel out of range");
+            _batteryLevel = -1;
         }
         else
         {
             _batteryLevel = batteryLevel;
-            if (_batteryLevel <= 20)
-            {
-                notify();
 
-            }
         }
         
     }
@@ -30,8 +26,30 @@ public class Smartwatch : Device, IPowerNotifier
     
     public override void Activate()
     {
+
+        if (_batteryLevel == -1)
+        {
+            Console.WriteLine("batteryLevel out of range. Cannot activate Smartwatch");
+            return;
+        }
+
+        if (_batteryLevel == 0)
+        {
+            Console.WriteLine("batteryLevel is 0%. Cannot activate Smartwatch");
+            return;
+
+        }
+        
         Console.WriteLine($"Smartwatch activated. Registered info about Smartwatch:" +
-                           "ID: {id}; Name: {name}; Status: {isTurnedOn}; Battery Level: {batteryLevel}%");
+                          "ID: {id}; Name: {name}; Status: {isTurnedOn}; Battery Level: {batteryLevel}%");
+
+        if (_batteryLevel <= 20)
+        {
+            notify();
+        }
+        
+        
+        
     }
     
 }
