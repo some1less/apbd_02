@@ -1,19 +1,39 @@
-﻿namespace apbd_02;
+﻿using apbd_02.exception;
+
+namespace apbd_02;
 
 public class Smartwatch : Device, IPowerNotifier
 {
-    private int _batteryLevel {get; set;}
+    private int _batteryLevel;
 
-    
+    public Smartwatch(){}
     public Smartwatch(int id, string name, bool isTurnedOn, int batteryLevel) : base(id, name, isTurnedOn)
     {
-        if (batteryLevel < 0 || batteryLevel > 100)
+        
+        BatteryLevel = batteryLevel;
+        
+        if (_batteryLevel <= 20)
         {
-            throw new ArgumentOutOfRangeException("batteryLevel out of range. Cannot activate Smartwatch");
+            notify();
         }
-        else
+        
+        Console.WriteLine("[Object] Smartwatch Created");
+
+    }
+
+    public int BatteryLevel
+    {
+        get { return _batteryLevel; }
+        set
         {
-            _batteryLevel = batteryLevel;
+            if (value < 0 || value > 100)
+            {
+                throw new ArgumentOutOfRangeException("batteryLevel out of range. Cannot activate Smartwatch");
+            }
+            else
+            {
+                _batteryLevel = value;
+            }
         }
     }
     
@@ -22,25 +42,34 @@ public class Smartwatch : Device, IPowerNotifier
         Console.WriteLine($"[Smartwatch] Low Battery Level!: {_batteryLevel}%");
     }
     
-    public override void Activate()
+    public override void SwitchMode()
     {
 
-        if (_batteryLevel == 0)
+        if (IsTurnedOn)
         {
-            Console.WriteLine("batteryLevel is 0%. Cannot activate Smartwatch");
-            return;
+            IsTurnedOn = false;
+            Console.WriteLine("[Smartwatch] Turned Off");
 
-        }
-
-        if (_batteryLevel > 0)
-        {
-            Console.WriteLine($"Smartwatch activated. Registered info about Smartwatch: \n" +
-                $"ID: {Id}; Name: {Name}; TurnedOn: {IsTurnedOn}; Battery Level: {_batteryLevel}%");
+           
             
-            if (_batteryLevel <= 20)
+        }
+        else
+        {
+            
+            
+            if (_batteryLevel < 11)
             {
-                notify();
+                throw new EmptyBatteryException();
+            } 
+            else
+            {
+                IsTurnedOn = true;
+                _batteryLevel -= 10;
+                Console.WriteLine("[Smartwatch] Turned On");
+                Console.WriteLine($"Registered info about Smartwatch: \n" +
+                                  $"ID: {Id}; Name: {Name}; TurnedOn: {IsTurnedOn}; Battery Level: {_batteryLevel}%");
             }
+            
         }
     }
     
