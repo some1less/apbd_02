@@ -145,4 +145,69 @@ public class DeviceManager
             Console.WriteLine($"Error deleting device: {e}");
         }
     }
+
+    // I did not come up with idea how to add possibility to edit ipaddress and etc
+    public void EditDeviceData(int deviceId, string newName, bool newState)
+    {
+        try
+        {
+            var deviceToEdit = devices.Find(d => d.Id == deviceId);
+            if (deviceToEdit != null)
+            {
+                deviceToEdit.Name = newName;
+                deviceToEdit.IsTurnedOn = newState;
+                Console.WriteLine($"Edited device: {deviceToEdit}");
+            }
+            else
+            {
+                Console.WriteLine($"Device not found: {deviceId}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error editing device: {e}");
+        }
+    }
+
+    public void TurnOnDevice(int deviceId)
+    {
+        try
+        {
+            var device = devices.Find(d => d.Id == deviceId);
+            if (device != null)
+            {
+                device.IsTurnedOn = true;
+                Console.WriteLine($"Turned on device: {device}");
+            }
+            else
+            {
+                Console.WriteLine($"Device not found: {deviceId}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error turning on device: {e}");
+        }
+    }
+    
+    public void TurnOffDevice(int deviceId)
+    {
+        try
+        {
+            var device = devices.Find(d => d.Id == deviceId);
+            if (device != null)
+            {
+                device.IsTurnedOn = false;
+                Console.WriteLine($"Turned off device: {device}");
+            }
+            else
+            {
+                Console.WriteLine($"Device not found: {deviceId}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error turning off device: {e}");
+        }
+    }
 }
