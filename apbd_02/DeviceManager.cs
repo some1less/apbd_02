@@ -103,4 +103,46 @@ public class DeviceManager
             return null;
         }
     }
+
+    public void AddDevice(Device device)
+    {
+        try
+        {
+            if (devices.Count < 15)
+            {
+                devices.Add(device);
+                Console.WriteLine($"Added device: {device}");
+            }
+            else
+            {
+                Console.WriteLine($"Cannot add more devices. Storage is full");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error adding device: {e}");
+        }
+        
+    }
+
+    public void RemoveDevice(int deviceId)
+    {
+        try
+        {
+            var deviceToRemove = devices.Find(d => d.Id == deviceId);
+            if (deviceToRemove != null)
+            {
+                devices.Remove(deviceToRemove);
+                Console.WriteLine($"Removed device: {deviceToRemove}");
+            }
+            else
+            {
+                Console.WriteLine($"Device not found: {deviceId}");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error deleting device: {e}");
+        }
+    }
 }
