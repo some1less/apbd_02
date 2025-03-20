@@ -157,7 +157,7 @@ public class DeviceManager
             {
                 if (device.GetType() == data.GetType())
                 {
-                    
+
                     Console.WriteLine($"Edited device: {device}");
 
                     if (device is Smartwatch smartwatch)
@@ -175,7 +175,7 @@ public class DeviceManager
                         {
                             Console.WriteLine("Invalid Smartwatch data");
                         }
-                        
+
                     }
 
                     if (device is PersonalComputer pc)
@@ -213,7 +213,7 @@ public class DeviceManager
                             Console.WriteLine("Invalid Embedded device data");
                         }
                     }
-                    
+
                 }
                 else
                 {
@@ -225,7 +225,11 @@ public class DeviceManager
             {
                 Console.WriteLine($"Device not found: {deviceId}");
             }
-            
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error editing device data: {e}");
         }
     }
     
