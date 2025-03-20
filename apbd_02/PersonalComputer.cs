@@ -6,6 +6,13 @@ public class PersonalComputer : Device
 {
     private string _operationSystem;
 
+    public string OperationSystem 
+    {
+        get { return _operationSystem; }
+        set { _operationSystem = value; }
+    }
+
+    
     public PersonalComputer(
         string id,
         string name,

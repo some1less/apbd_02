@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text.RegularExpressions;
 using apbd_02.exception;
 
@@ -6,8 +7,26 @@ namespace apbd_02;
 public class EmbeddedDevice : Device
 {
     private string _ipAddress;
+
+    public string IPAddress
+    {
+        get { return _ipAddress; }
+        set
+        {
+            _ipAddress = value;
+        }
+    }
     private string _networkName;
 
+    public string NetworkName
+    {
+        get { return _networkName; }
+        set
+        {
+            _networkName = value;
+        }
+    }
+    
     public EmbeddedDevice(string id, string name, bool isTurnedOn, string ipAddress, string networkName) : base(id, name, isTurnedOn)
     {
         IpAddress = ipAddress;

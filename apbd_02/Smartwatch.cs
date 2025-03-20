@@ -19,7 +19,7 @@ public class Smartwatch : Device, IPowerNotifier
         
     }
 
-    private int BatteryLevel
+    public int BatteryLevel
     {
         get { return _batteryLevel; }
         set
