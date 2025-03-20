@@ -7,15 +7,7 @@ namespace apbd_02;
 public class EmbeddedDevice : Device
 {
     private string _ipAddress;
-
-    public string IPAddress
-    {
-        get { return _ipAddress; }
-        set
-        {
-            _ipAddress = value;
-        }
-    }
+    
     private string _networkName;
 
     public string NetworkName
@@ -38,7 +30,7 @@ public class EmbeddedDevice : Device
         Console.WriteLine("[Object] Embedded device created");
     }
 
-    private string IpAddress
+    public string IpAddress
     {
         get {return _ipAddress;}
         set

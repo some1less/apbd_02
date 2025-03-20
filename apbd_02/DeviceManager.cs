@@ -201,11 +201,11 @@ public class DeviceManager
                         {
                             ed.Name = newEdData.Name;
                             ed.IsTurnedOn = newEdData.IsTurnedOn;
-                            ed.IPAddress = newEdData.IPAddress;
+                            ed.IpAddress = newEdData.IpAddress;
                             ed.NetworkName = newEdData.NetworkName;
                             Console.WriteLine($"Embedded device updated: Name: {ed.Name}, " +
                                               $"Current turn status: {ed.IsTurnedOn}, " +
-                                              $"IP Address: {ed.IPAddress}, " +
+                                              $"IP Address: {ed.IpAddress}, " +
                                               $"Network name: {ed.NetworkName}");
                         }
                         else
@@ -294,6 +294,46 @@ public class DeviceManager
         catch (Exception e)
         {
             Console.WriteLine($"Error showing devices: {e}");
+        }
+    }
+
+    public void SaveDataToFile()
+    {
+        try
+        {
+            var lines = new List<string>();
+            foreach (var device in devices)
+            {
+                string mainLine = $"{device.Id},{device.Name},{device.IsTurnedOn}";
+
+                if (device is Smartwatch sw)
+                {
+                    mainLine += $",{sw.BatteryLevel}";
+                }
+
+                if (device is PersonalComputer pc)
+                {
+                    mainLine += $",{pc.OperationSystem}";
+                }
+
+                if (device is EmbeddedDevice ed)
+                {
+                    mainLine += $",{ed.IpAddress},{ed.NetworkName}";
+                }
+                else
+                {
+                    mainLine += ";";
+                }
+
+                lines.Add(mainLine);
+            }
+
+            File.WriteAllLines("output.txt", lines);
+            Console.WriteLine("File saved");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error saving data of devices: {e}");
         }
     }
 }
