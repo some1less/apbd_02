@@ -6,6 +6,7 @@ namespace apbd_02;
 
 public class EmbeddedDevice : Device
 {
+    
     private string _ipAddress;
     
     private string _networkName;
@@ -25,7 +26,7 @@ public class EmbeddedDevice : Device
         _networkName = networkName;
         if (!_networkName.Contains("MD Ltd.") && isTurnedOn)
         {
-            throw new ArgumentException("The network name must contain MD Ltd. to be turned on", "networkName");
+            throw new ConnectionException();
         }
         Console.WriteLine("[Object] Embedded device created");
     }

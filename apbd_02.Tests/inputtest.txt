@@ -1,0 +1,3 @@
+SW-1,Apple,true,50
+P-1,capibara,true,lmao
+ED-1,TestName", false,56.54.44.44,SomeName
