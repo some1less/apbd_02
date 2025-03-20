@@ -6,7 +6,7 @@ public class Smartwatch : Device, IPowerNotifier
 {
     private int _batteryLevel;
 
-    public Smartwatch(int id, string name, bool isTurnedOn, int batteryLevel) : base(id, name, isTurnedOn)
+    public Smartwatch(string id, string name, bool isTurnedOn, int batteryLevel) : base(id, name, isTurnedOn)
     {
         
         BatteryLevel = batteryLevel;

@@ -8,7 +8,7 @@ public class EmbeddedDevice : Device
     private string _ipAddress;
     private string _networkName;
 
-    public EmbeddedDevice(int id, string name, bool isTurnedOn, string ipAddress, string networkName) : base(id, name, isTurnedOn)
+    public EmbeddedDevice(string id, string name, bool isTurnedOn, string ipAddress, string networkName) : base(id, name, isTurnedOn)
     {
         IpAddress = ipAddress;
         _networkName = networkName;

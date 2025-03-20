@@ -7,7 +7,7 @@ public class PersonalComputer : Device
     private string _operationSystem;
 
     public PersonalComputer(
-        int id,
+        string id,
         string name,
         bool isTurnedOn,
         string operationSystem) : base(id, name, isTurnedOn)

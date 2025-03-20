@@ -55,42 +55,42 @@ public class DeviceManager
         {
             var parts = line.Split(',');
 
-            if (parts.Length < 4)
+            if (parts.Length != 4)
                 return null;
-
+            
             string idPart = parts[0];
             string namepart = parts[1];
             bool isTurnedOn = bool.Parse(parts[2]);
             string additionalData = parts[3];
 
-            // I didnt come up with anything better than looking for first founded digit >.<
-            var match = Regex.Match(namepart, @"\d+");
-            if (!match.Success)
+            if (idPart.StartsWith("SW") || idPart.StartsWith("P-"))
             {
-                Console.WriteLine($"Invalid device name: {idPart}");
-                return null;
+                bool isParsedSuccessfully = bool.TryParse(parts[2], out isTurnedOn);
+                if (!isParsedSuccessfully)
+                {
+                    Console.WriteLine($"Invalid 'isTurnedOn' value for device '{idPart}'");
+                    return null; // Invalid boolean value, return null
+                }
             }
-
-            int deviceId = int.Parse(match.Value);
-
+            
             if (idPart.StartsWith("SW"))
             {
                 if (parts.Length != 4) return null;
                 int batteryLevel = int.Parse(additionalData.TrimEnd('%'));
-                return new Smartwatch(deviceId, namepart, isTurnedOn, batteryLevel);
+                return new Smartwatch(idPart, namepart, isTurnedOn, batteryLevel);
             }
             else if (idPart.StartsWith("P"))
             {
                 if (parts.Length != 4) return null;
                 var operationSystem = additionalData;
-                return new PersonalComputer(deviceId, namepart, isTurnedOn, operationSystem);
+                return new PersonalComputer(idPart, namepart, isTurnedOn, operationSystem);
             }
             else if (idPart.StartsWith("ED"))
             {
                 if (parts.Length != 5) return null;
                 string ipAddress = additionalData;
                 string networkName = parts[4];
-                return new EmbeddedDevice(deviceId, namepart, isTurnedOn, ipAddress, networkName);
+                return new EmbeddedDevice(idPart, namepart, isTurnedOn, ipAddress, networkName);
             }
             else
             {
@@ -125,7 +125,7 @@ public class DeviceManager
         
     }
 
-    public void RemoveDevice(int deviceId)
+    public void RemoveDevice(string deviceId)
     {
         try
         {
@@ -147,7 +147,7 @@ public class DeviceManager
     }
 
     // I did not come up with idea how to add possibility to edit ipaddress and etc
-    public void EditDeviceData(int deviceId, string newName, bool newState)
+    public void EditDeviceData(string deviceId, string newName, bool newState)
     {
         try
         {
@@ -169,7 +169,7 @@ public class DeviceManager
         }
     }
 
-    public void TurnOnDevice(int deviceId)
+    public void TurnOnDevice(string deviceId)
     {
         try
         {
@@ -190,7 +190,7 @@ public class DeviceManager
         }
     }
     
-    public void TurnOffDevice(int deviceId)
+    public void TurnOffDevice(string deviceId)
     {
         try
         {
