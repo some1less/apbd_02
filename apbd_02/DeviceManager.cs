@@ -147,28 +147,88 @@ public class DeviceManager
     }
 
     // I did not come up with idea how to add possibility to edit ipaddress and etc
-    public void EditDeviceData(string deviceId, string newName, bool newState)
+    public void EditDeviceData(string deviceId, Device data)
     {
         try
         {
-            var deviceToEdit = devices.Find(d => d.Id == deviceId);
-            if (deviceToEdit != null)
+            Device device = devices.Find(d => d.Id == deviceId);
+
+            if (device != null)
             {
-                deviceToEdit.Name = newName;
-                deviceToEdit.IsTurnedOn = newState;
-                Console.WriteLine($"Edited device: {deviceToEdit}");
+                if (device.GetType() == data.GetType())
+                {
+                    
+                    Console.WriteLine($"Edited device: {device}");
+
+                    if (device is Smartwatch smartwatch)
+                    {
+                        if (data is Smartwatch newSmartwatchData)
+                        {
+                            smartwatch.Name = newSmartwatchData.Name;
+                            smartwatch.IsTurnedOn = newSmartwatchData.IsTurnedOn;
+                            smartwatch.BatteryLevel = newSmartwatchData.BatteryLevel;
+                            Console.WriteLine($"Smartwatch updated: Name: {smartwatch.Name}, " +
+                                              $"Current turn status: {smartwatch.IsTurnedOn}, " +
+                                              $"Battery Level: {smartwatch.BatteryLevel}%");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Smartwatch data");
+                        }
+                        
+                    }
+
+                    if (device is PersonalComputer pc)
+                    {
+                        if (data is PersonalComputer newPersonalComputerData)
+                        {
+                            pc.Name = newPersonalComputerData.Name;
+                            pc.IsTurnedOn = newPersonalComputerData.IsTurnedOn;
+                            pc.OperationSystem = newPersonalComputerData.OperationSystem;
+                            Console.WriteLine($"Personal Computer updated: Name: {pc.Name}, " +
+                                              $"Current turn status: {pc.IsTurnedOn}, " +
+                                              $"Operation system: {pc.OperationSystem}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid PersonalComputer data");
+                        }
+                    }
+
+                    if (device is EmbeddedDevice ed)
+                    {
+                        if (data is EmbeddedDevice newEdData)
+                        {
+                            ed.Name = newEdData.Name;
+                            ed.IsTurnedOn = newEdData.IsTurnedOn;
+                            ed.IPAddress = newEdData.IPAddress;
+                            ed.NetworkName = newEdData.NetworkName;
+                            Console.WriteLine($"Embedded device updated: Name: {ed.Name}, " +
+                                              $"Current turn status: {ed.IsTurnedOn}, " +
+                                              $"IP Address: {ed.IPAddress}, " +
+                                              $"Network name: {ed.NetworkName}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid Embedded device data");
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    Console.WriteLine($"Device type mismatch. Cannot edit {data.GetType().Name}" +
+                                      $"on a {device.GetType().Name}");
+                }
             }
             else
             {
                 Console.WriteLine($"Device not found: {deviceId}");
             }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Error editing device: {e}");
+            
         }
     }
-
+    
     public void TurnOnDevice(string deviceId)
     {
         try
