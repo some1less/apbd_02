@@ -1,0 +1,23 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=2D31D04B_002D03D1_002D4E59_002D8171_002D8F176EA00B87_002Ff_003ADeviceManagerTest_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=33DEF545_002D1AD3_002D4579_002D8DC8_002D6EDC20587664/@EntryIndexedValue">2D31D04B-03D1-4E59-8171-8F176EA00B87</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=MSTest/@EntryIndexedValue">d6790ab7-33c2-4425-b2c9-51480cd1a852</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3023fa89_002Ddccd_002D4a0c_002Db52e_002D6f56a536e48a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestConnectionExceptionForNetworkName" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.EmbeddedDeviceTest.TestConnectionExceptionForNetworkName&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.SmartwatchTest.TestBatteryLessThanZero&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.SmartwatchTest.TestEmptyBatteryException&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.SmartwatchTest.TestNoEmptyBatteryException&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.SmartwatchTest.TestReduceWhenTurnOn&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.PersonalComputerTest.TestEmptySystemException&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.PersonalComputerTest.TestNoEmptySystemException&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9c078b0e_002D0adf_002D43f4_002D993c_002Ded36615312bc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AddDeviceOutOfSpaceTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.DeviceManagerTest.TurnOn&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.DeviceManagerTest.TurnOff&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.EmbeddedDeviceTest.TestArgumentExceptionForIP&lt;/TestId&gt;
+    &lt;TestId&gt;MSTest::2D31D04B-03D1-4E59-8171-8F176EA00B87::net9.0::apbd_02.Tests.EmbeddedDeviceTest.TestConnectionExceptionForNetworkName&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
